@@ -3,5 +3,9 @@ services:
     name: decision-tree-demo
     env: python
     plan: free
+    # Pin Python: 3.14 + Altair (used by st.bar_chart) can crash; we use matplotlib for charts too.
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"
     buildCommand: python3 -m venv .venv && .venv/bin/pip install --upgrade pip && .venv/bin/pip install -r requirements.txt
-    startCommand: .venv/bin/python -m streamlit run app.py --server.port=$PORT --server.address=0.0.0.0
+    startCommand: .venv/bin/python -m streamlit run app.py --server.port=$PORT --server.address=0.0.0.0 --server.headless=true
