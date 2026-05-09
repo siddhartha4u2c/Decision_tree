@@ -3,5 +3,5 @@ services:
     name: decision-tree-demo
     env: python
     plan: free
-    buildCommand: python3 -m pip install --upgrade pip && python3 -m pip install -r requirements.txt
-    startCommand: python3 -m streamlit run app.py --server.port=$PORT --server.address=0.0.0.0
+    buildCommand: python3 -m venv .venv && .venv/bin/pip install --upgrade pip && .venv/bin/pip install -r requirements.txt
+    startCommand: .venv/bin/python -m streamlit run app.py --server.port=$PORT --server.address=0.0.0.0
